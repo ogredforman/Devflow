@@ -1,0 +1,8 @@
+{
+  "name": "devflow",
+  "description": "Doc-driven plan → build → verify workflow. Reads docs/PLAN.md, docs/SPEC.md and AGENTS.md (see CONTRACT.md) so the same skills work in every project.",
+  "version": "0.2.0",
+  "author": {
+    "name": "Red Forman"
+  }
+}

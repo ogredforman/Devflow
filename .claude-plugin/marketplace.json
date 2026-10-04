@@ -1,0 +1,14 @@
+{
+  "name": "devflow",
+  "description": "A plan → build → verify development workflow for Claude Code",
+  "owner": {
+    "name": "Red Forman"
+  },
+  "plugins": [
+    {
+      "name": "devflow",
+      "source": "./plugins/devflow",
+      "description": "Doc-driven workflow: /devflow:next-task, /devflow:park, /devflow:progress, and a reviewer subagent. Works in any repo that follows the devflow doc contract."
+    }
+  ]
+}
