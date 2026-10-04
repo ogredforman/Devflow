@@ -3,7 +3,7 @@
 > Companion to [`SPEC.md`](./SPEC.md). Build Layer 2 one task at a time with `/devflow:next-task`,
 > the same way any other devflow project is built.
 
-**Current stage: Stage 1 — Layer 1: workflow plugin**
+**Current stage: Stage 2 — Kickoff pipeline
 
 Task IDs are `<stage>.<task>`. Tick tasks `[x]` as they're finished. `/devflow:next-task` picks the
 first unchecked task in the current stage; `/devflow:park` adds ideas to the Parked section.
@@ -32,7 +32,7 @@ first unchecked task in the current stage; `/devflow:park` adds ideas to the Par
   rules in `next-task` and the reviewer, a structured brief from `next-task` to the reviewer, the
   reviewer on Sonnet and trusting reported test results, optional `docs/CODEMAP.md` in the contract
   and templates, dotted stage IDs (`1.5`) and lettered task IDs (`1.5.13b`) in the contract.
-- [ ] **1.7** Install the plugin and migrate Waypoint to it (`MIGRATE-WAYPOINT.md`). Confirm
+- [x] **1.7** Install the plugin and migrate Waypoint to it (`MIGRATE-WAYPOINT.md`). Confirm
   `/devflow:progress` and `/devflow:next-task` work there, including from T3 Code. This task is done
   by hand in the Waypoint repo; afterwards tick it here and change the Current stage line to Stage 2.
 
