@@ -48,11 +48,14 @@ git add -A
 git commit -m "devflow: workflow plugin v0.2.0"
 
 claude plugin validate .
-claude plugin validate .\plugins\devflow
 claude plugin marketplace add F:\dev\Devflow
 claude plugin install devflow@devflow
 claude plugin list
 ```
+
+`claude plugin validate .` checks the marketplace file and the plugin it lists, so one validate is
+enough. (To validate the plugin folder by itself, use forward slashes or a full path:
+`claude plugin validate ./plugins/devflow`.)
 
 `claude plugin list` should show `devflow@devflow`, version 0.2.0, enabled, at user scope (every
 project on this computer). Leave `F:\dev\Devflow` where it is: the plugin is read from there.
