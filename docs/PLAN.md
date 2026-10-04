@@ -66,7 +66,7 @@ reviewer, and Waypoint no longer has its own copies.
   and copies it, adjusting hook flags to the SPEC. Runs `check-contract`. Offers `git init` + first commit.
 - [x] **2.6** `kickoff` orchestrator skill: detect which kickoff outputs exist and run the next
   missing step only, then stop and name the following command. Safe to run repeatedly.
-- [ ] **2.7** Dry run: in a scratch folder, run the full pipeline on a small toy idea. Log every
+- [x] **2.7** Dry run: in a scratch folder, run the full pipeline on a small toy idea. Log every
   friction point with `/devflow:park`; fix the ones that produced wrong or missing output.
 - [ ] **2.8** Real run: bootstrap the second real project with the pipeline and complete its
   task 0.1 with `/devflow:next-task`. Fix what breaks.
@@ -102,3 +102,8 @@ reviewer, and Waypoint no longer has its own copies.
 ## Parked
 
 Ideas and tangents captured mid-work (via `/devflow:park`). Not scheduled. Review them at the start of each stage.
+
+- [ ] Dry run 2.7: kickoff-brief leaves the input notes file (e.g. `idea-notes.md`) untracked at the root after kickoff; decide whether to move it to `docs/notes/`, include it in the first commit, or say to delete it (parked 2026-10-03; suggested stage: 3)
+- [ ] Dry run 2.7: PLAN template's Stage 3 "Candidates:" has an empty `-` bullet with no guidance on what kickoff-plan writes there (used "None yet; filled from real use and the Parked section.") (parked 2026-10-03; suggested stage: 3)
+- [ ] Dry run 2.7: Go preset `gitignore` ignores `config.toml` and SQLite files even when the SPEC has neither; kickoff-agents only says to trim the frontend section (parked 2026-10-03; suggested stage: 3)
+- [ ] Dry run 2.7: the dry run followed the SKILL.md files by hand, so slash-command mechanics (`$ARGUMENTS` passing through `/devflow:kickoff`, `${CLAUDE_PLUGIN_ROOT}` resolution, stop points) are still untested; cover them in 2.8 (parked 2026-10-03; suggested stage: 2)

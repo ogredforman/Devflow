@@ -41,7 +41,7 @@ can be cut from it. This is the second kickoff step. Write one file, then stop f
   | Open questions | 13. Open questions |
 
   Sections 6, 7, 9, 11 and 12 come from your answers and what the brief implies; 14 stays as the
-  template has it.
+  template has it; 15. Glossary defines the domain terms the spec uses.
 
 - The brief usually says little about the domain model, core flows, and which requirements belong
   to the prototype. List what is missing **and matters** for those, plus anything the brief leaves
@@ -68,6 +68,10 @@ can be cut from it. This is the second kickoff step. Write one file, then stop f
   - **External dependencies:** for each one (APIs, LLMs, payment, email, OS services, hardware), an
     interface in 10.3 and an entry in 10.4 saying how the fake behaves and how it is made
     deterministic for tests. If there are none, write "No external dependencies." in 10.3 and 10.4.
+    Time counts as a dependency when behavior depends on it (expiry, ages, schedules): give it a
+    `Clock` interface and a settable fake. A local dependency that tests can use for real and keep
+    deterministic, typically the filesystem via a temp dir, may skip the interface; say so in 10.4
+    with how tests isolate it (e.g. "Filesystem: not faked; paths are injected and tests use a temp dir").
   - **Assumptions:** anything you had to decide that the brief and answers didn't settle goes under
     13. Open questions, with what it blocks and the assumption used for now.
   - Set Status to `Pre-prototype` and remove the template's `<!-- -->` comments.
@@ -83,7 +87,8 @@ can be cut from it. This is the second kickoff step. Write one file, then stop f
 Re-check the written file with `grep -n '^##' docs/SPEC.md` and `grep -c '\[[PML]\]' docs/SPEC.md`:
 - A heading containing "Product principles" exists, with at least one principle under it.
 - All `##` and `###` headings are numbered.
-- Requirements in section 8 are tagged, and every external dependency appears in 10.3 and 10.4.
+- Requirements in section 8 are tagged, and every external dependency appears in 10.4 and, unless
+  10.4 says it isn't faked, in 10.3.
 
 Fix any failure before replying. Don't run `check-contract` here; PLAN.md and AGENTS.md don't exist yet.
 

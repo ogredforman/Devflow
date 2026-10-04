@@ -44,8 +44,8 @@ file, then stop for review.
   | SPEC | PLAN |
   |---|---|
   | 1–5, 10.1 | Background bullets |
-  | 10.1 technology, 10.2 layout, 12. Quality and testing | Stage 0 — Foundations |
-  | `[P]` requirements, the flows they serve, 10.3 interfaces, 10.4 fakes | Stage 1 — Prototype |
+  | 10.1 technology, 10.2 layout, 10.3 interfaces, 12. Quality and testing | Stage 0 — Foundations |
+  | `[P]` requirements, the flows they serve, 10.4 fakes | Stage 1 — Prototype |
   | `[M]` requirements, swapping each fake for the real dependency | Stage 2 — MVP |
   | Nothing yet | Stage 3 — Refinement (plain candidate bullets) |
   | 9. Non-functional (install, distribution) | Stage 4 — Packaging |
@@ -73,9 +73,10 @@ file, then stop for review.
     lint commands. Name the commands; AGENTS.md will list exactly these.
   - The last Stage 0 task (or part of an earlier one) starts `docs/CODEMAP.md` from the devflow
     template.
-  - Other tasks wire whatever else must exist before features: config, CI, the interfaces from 10.3.
-- **Stage 1:** every external dependency is its fake from 10.4. No task touches a real API, account,
-  or device. Cover every `[P]` requirement.
+  - Other tasks wire whatever else must exist before features: CI, the domain types, and the
+    interfaces from 10.3 (declarations only; their fakes are Stage 1).
+- **Stage 1:** the first task builds the fakes from 10.4; every external dependency is its fake. No
+  task touches a real API, account, or device. Cover every `[P]` requirement.
 - **Stage 2:** one task per real integration replacing its fake, plus the remaining `[M]`
   requirements.
 - **Stage 4:** tasks from SPEC §9's install and distribution needs. If packaging isn't needed yet,

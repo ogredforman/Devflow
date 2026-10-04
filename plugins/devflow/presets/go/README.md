@@ -1,13 +1,13 @@
 # Go preset
 
-Stack-specific pieces for a Go project. Copied into a project once (by hand today, by
-`/devflow:kickoff-agents` once Layer 2 exists), then owned by that project.
+Stack-specific pieces for a Go project. Copied into a project once (by `/devflow:kickoff-agents`, or by hand), then owned by that
+project.
 
 | File | Copy to | Notes |
 |---|---|---|
 | `hooks/` | `tools/hooks/` | Hook program. Its own Go module, so it's never part of the app build. Run its tests with `go -C tools/hooks test ./...`. |
-| `settings.json` | `.claude/settings.json` | Adjust flags: `--protect <dir>/` (repeatable) for append-only folders like applied migrations; `--no-cgo` if the project must be pure Go; `--web-dir` for the frontend folder. Remove a flag to disable that guard. |
-| `rules/go.md` | `.claude/rules/go.md` | Generic Go rules. Add project-specific rules (db, frontend, integrations) as separate files. |
+| `settings.json` | `.claude/settings.json` | Adjust flags: `--protect <dir>/` (repeatable) for append-only folders like applied migrations; `--no-cgo` if the project must be pure Go; `--web-dir` for the frontend folder. Remove `--protect` or `--no-cgo` to disable that guard; with no `--protect` at all, drop the `guard-edit` entry. `--web-dir` defaults to `web` and is harmless without a frontend, so it can just be removed. |
+| `rules/go.md` | `.claude/rules/go.md` | Generic Go rules. Adjust any the SPEC contradicts and drop ones for things the project lacks (database, HTTP handlers). Add project-specific rules (db, frontend, integrations) as separate files. |
 | `gitignore` | `.gitignore` | Trim the frontend section if there's no frontend. Ignores `.claude/worktrees/`, where Claude Code puts agent worktrees. |
 | `gitattributes` | `.gitattributes` | LF line endings everywhere; matters for Windows/macOS/Linux teams of one. |
 

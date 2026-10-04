@@ -62,7 +62,13 @@ step. Write the set, check it, offer the first commit, then stop.
   preset's language rules cover the language itself.
 - **Hook flags** (if the preset has them): set them from the SPEC, e.g. `--protect` for append-only
   folders such as applied migrations, `--no-cgo` if the SPEC requires a pure-Go build, `--web-dir`
-  for the frontend folder. Remove a flag the SPEC gives no reason for.
+  for the frontend folder. Remove a flag the SPEC gives no reason for. A hook whose only purpose is
+  a removed flag goes too: with no `--protect` folder, drop the `guard-edit` entry. Flags with a
+  harmless default (the preset README says which) can simply be removed.
+- **Language rules** (if the preset has them): check each one against the SPEC. Adjust a rule the
+  SPEC contradicts (e.g. "no `fmt.Println` outside main" in a CLI whose output is its product) and
+  drop rules for things the project doesn't have (database, HTTP handlers). Otherwise the reviewer
+  will flag code that follows the SPEC.
 - Ask at most 5 questions, all in one message, most important first. Each gets a default derived
   from the spec:
   ```
@@ -102,7 +108,8 @@ step. Write the set, check it, offer the first commit, then stop.
 - **`docs/adr/`**: copy `${CLAUDE_PLUGIN_ROOT}/templates/adr/README.md` and `0000-template.md`.
 - **Preset** (unless `none`): copy each file to the destination in its README table (e.g.
   `cp -r ${CLAUDE_PLUGIN_ROOT}/presets/<name>/hooks tools/hooks`). Then adjust the copies:
-  - Hook flags in `.claude/settings.json` as decided in step 4.
+  - Hook flags and entries in `.claude/settings.json` as decided in step 4.
+  - The language rules file, as decided in step 4, citing the SPEC section behind each changed rule.
   - Sections of `.gitignore` the project doesn't need (e.g. the frontend section with no frontend).
   - If `.claude/settings.json` already exists, merge the preset's `hooks` into it rather than
     replacing other settings, and show the result before writing.
@@ -112,8 +119,9 @@ step. Write the set, check it, offer the first commit, then stop.
 - Follow steps 2–4 of `${CLAUDE_PLUGIN_ROOT}/skills/check-contract/SKILL.md` against PLAN.md,
   AGENTS.md, CLAUDE.md, and SPEC.md.
 - Check no template placeholders or comments remain:
-  `grep -nE '<([A-Za-z.]|e\.g\.)[^>]*>|<!--' AGENTS.md CLAUDE.md | grep -v 'PLAN <stage>'` finds
-  nothing. (The commit format line in `## Finishing a task` is meant to keep its `<...>`.) A hit
+  `grep -nE '<([A-Za-z.]|e\.g\.)[^>]*>|<!--' AGENTS.md CLAUDE.md | grep -vE 'PLAN <stage>|park <idea>'`
+  finds nothing. (The commit format line in `## Finishing a task` and the `/devflow:park <idea>`
+  line in CLAUDE.md are meant to keep their `<...>`.) A hit
   that is real content, not a leftover placeholder (e.g. a generic type in a rule), can stay.
 - Check the `## Commands` list matches the commands task `0.1` names, and every hard rule other
   than the two kept from the template cites a SPEC section.

@@ -77,7 +77,7 @@ It has two layers:
 | Skill | Input | Output | Notes |
 |---|---|---|---|
 | `kickoff-brief` | The current conversation, pasted notes, or a file path in `$ARGUMENTS` | `docs/BRIEF.md` | Distills conclusions and decisions *with reasons*. Lists open questions instead of guessing. |
-| `kickoff-spec` | `docs/BRIEF.md` | `docs/SPEC.md` | Fills the SPEC template. Principles come from the brief. Every external dependency gets an interface and a fake (§10.4 of the template). |
+| `kickoff-spec` | `docs/BRIEF.md` | `docs/SPEC.md` | Fills the SPEC template. Principles come from the brief. Every external dependency gets an interface and a fake (§10.4 of the template); time gets a `Clock`. A local dependency tests can use for real (the filesystem via a temp dir) may skip the interface if §10.4 says how tests isolate it. |
 | `kickoff-plan` | `docs/SPEC.md` | `docs/PLAN.md` | Standard stage pattern (0 foundations, 1 prototype with fakes, 2 MVP, 3 refinement, 4 packaging). Tasks sized to one session each. Stage 0 includes starting `docs/CODEMAP.md`. |
 | `kickoff-agents` | SPEC + PLAN + chosen preset | `AGENTS.md`, `CLAUDE.md`, `.claude/rules/*`, `.claude/settings.json`, `tools/hooks/`, `.gitignore`, `.gitattributes`, `docs/adr/` | Hard rules derived from SPEC boundaries and principles. Copies the stack preset. Offers `git init` + first commit. |
 | `kickoff` | Whatever exists | Runs the next missing step | Resumable orchestrator: inspects which docs exist and runs the next step, stopping after each. |
