@@ -53,7 +53,7 @@ reviewer, and Waypoint no longer has its own copies.
 - [x] **2.2** `kickoff-brief` skill (SPEC §6.2): input from the conversation, pasted text, or a file
   path in `$ARGUMENTS`; output `docs/BRIEF.md` from the template; at most 5 questions, each with a
   default; stops and says what to review. Never overwrites an existing BRIEF without asking.
-- [ ] **2.3** `kickoff-spec` skill: BRIEF → `docs/SPEC.md` from the template. Must produce the
+- [x] **2.3** `kickoff-spec` skill: BRIEF → `docs/SPEC.md` from the template. Must produce the
   "Product principles" section, [P]/[M]/[L] tags, and an interface + fake for every external
   dependency. Lists anything it had to assume under "Open questions".
 - [ ] **2.4** `kickoff-plan` skill: SPEC → `docs/PLAN.md` from the template. Standard stages;
