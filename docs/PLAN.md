@@ -60,7 +60,7 @@ reviewer, and Waypoint no longer has its own copies.
   tasks start with a verb, reference SPEC sections, and fit one session; Stage 0's first task
   creates the commands AGENTS.md will list, and Stage 0 starts `docs/CODEMAP.md`; Stage 1 uses fakes
   only. Runs `check-contract` on the result.
-- [ ] **2.5** `kickoff-agents` skill: SPEC + PLAN → AGENTS.md (hard rules derived from SPEC
+- [x] **2.5** `kickoff-agents` skill: SPEC + PLAN → AGENTS.md (hard rules derived from SPEC
   boundaries and principles; `## Commands` matching Stage 0's plan), CLAUDE.md, path rules for each
   major area, ADR folder. Asks which preset to use (list `${CLAUDE_PLUGIN_ROOT}/presets/`, or "none")
   and copies it, adjusting hook flags to the SPEC. Runs `check-contract`. Offers `git init` + first commit.

@@ -29,7 +29,7 @@ templates); the only code is stack-preset hook programs.
 - Skills and agents refer to bundled files via `${CLAUDE_PLUGIN_ROOT}/...`, never absolute paths.
 - Skills never drop or rename sections that `CONTRACT.md` requires. Changing the contract means
   updating CONTRACT.md, the templates, and every skill that parses it in the same commit.
-- Kickoff skills write one artifact, then stop. They never overwrite an existing file without showing
+- Kickoff skills write only the outputs SPEC §6.2 lists for their step, then stop. They never overwrite an existing file without showing
   the change and asking.
 - Kickoff skills set `disable-model-invocation: true`. Only `park` may be model-invoked.
 - Skill `description` fields stay under ~200 characters; they load into every session.
