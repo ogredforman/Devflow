@@ -56,7 +56,7 @@ reviewer, and Waypoint no longer has its own copies.
 - [x] **2.3** `kickoff-spec` skill: BRIEF → `docs/SPEC.md` from the template. Must produce the
   "Product principles" section, [P]/[M]/[L] tags, and an interface + fake for every external
   dependency. Lists anything it had to assume under "Open questions".
-- [ ] **2.4** `kickoff-plan` skill: SPEC → `docs/PLAN.md` from the template. Standard stages;
+- [x] **2.4** `kickoff-plan` skill: SPEC → `docs/PLAN.md` from the template. Standard stages;
   tasks start with a verb, reference SPEC sections, and fit one session; Stage 0's first task
   creates the commands AGENTS.md will list, and Stage 0 starts `docs/CODEMAP.md`; Stage 1 uses fakes
   only. Runs `check-contract` on the result.
