@@ -50,7 +50,7 @@ reviewer, and Waypoint no longer has its own copies.
   lettered task IDs. Test it on Waypoint (should pass) and on
   a folder with a deliberately broken PLAN.md (should list the problems). Built first because the
   other kickoff steps use it to check their own output.
-- [ ] **2.2** `kickoff-brief` skill (SPEC §6.2): input from the conversation, pasted text, or a file
+- [x] **2.2** `kickoff-brief` skill (SPEC §6.2): input from the conversation, pasted text, or a file
   path in `$ARGUMENTS`; output `docs/BRIEF.md` from the template; at most 5 questions, each with a
   default; stops and says what to review. Never overwrites an existing BRIEF without asking.
 - [ ] **2.3** `kickoff-spec` skill: BRIEF → `docs/SPEC.md` from the template. Must produce the
