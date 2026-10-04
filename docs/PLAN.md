@@ -3,7 +3,7 @@
 > Companion to [`SPEC.md`](./SPEC.md). Build Layer 2 one task at a time with `/devflow:next-task`,
 > the same way any other devflow project is built.
 
-**Current stage: Stage 2 — Kickoff pipeline
+**Current stage: Stage 2 — Kickoff pipeline**
 
 Task IDs are `<stage>.<task>`. Tick tasks `[x]` as they're finished. `/devflow:next-task` picks the
 first unchecked task in the current stage; `/devflow:park` adds ideas to the Parked section.
@@ -45,7 +45,7 @@ reviewer, and Waypoint no longer has its own copies.
 
 **Goal:** from an idea discussion to a ready-to-build, contract-following repo, one reviewed step at a time (SPEC §6.2, §7).
 
-- [ ] **2.1** `check-contract` skill: inspect a repo against `${CLAUDE_PLUGIN_ROOT}/CONTRACT.md` and
+- [x] **2.1** `check-contract` skill: inspect a repo against `${CLAUDE_PLUGIN_ROOT}/CONTRACT.md` and
   report each missing or malformed item with the exact fix. It must accept dotted stage IDs and
   lettered task IDs. Test it on Waypoint (should pass) and on
   a folder with a deliberately broken PLAN.md (should list the problems). Built first because the
