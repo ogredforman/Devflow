@@ -64,7 +64,7 @@ reviewer, and Waypoint no longer has its own copies.
   boundaries and principles; `## Commands` matching Stage 0's plan), CLAUDE.md, path rules for each
   major area, ADR folder. Asks which preset to use (list `${CLAUDE_PLUGIN_ROOT}/presets/`, or "none")
   and copies it, adjusting hook flags to the SPEC. Runs `check-contract`. Offers `git init` + first commit.
-- [ ] **2.6** `kickoff` orchestrator skill: detect which kickoff outputs exist and run the next
+- [x] **2.6** `kickoff` orchestrator skill: detect which kickoff outputs exist and run the next
   missing step only, then stop and name the following command. Safe to run repeatedly.
 - [ ] **2.7** Dry run: in a scratch folder, run the full pipeline on a small toy idea. Log every
   friction point with `/devflow:park`; fix the ones that produced wrong or missing output.
