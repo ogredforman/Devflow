@@ -122,7 +122,6 @@ plugins/devflow/                  the plugin (installed from here)
   presets/<stack>/
 docs/SPEC.md  docs/PLAN.md        this repo's own spec and plan (it follows the contract too)
 AGENTS.md  CLAUDE.md              agent instructions for working on devflow itself
-MIGRATE-WAYPOINT.md               one-time guide for moving Waypoint onto the plugin
 ```
 
 ## 11. Open questions
