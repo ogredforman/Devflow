@@ -58,3 +58,4 @@ These are created in Stage 0 task 0.1. Until then, they don't exist.
 4. If a design decision changed, update `docs/SPEC.md` or add `docs/adr/NNNN-title.md` in the same commit.
    If a package, public entry point, or test fixture was added or moved, update `docs/CODEMAP.md`.
 5. One task per commit. Message format: `<area>: <what changed> (PLAN <stage>.<task>)`.
+   `/devflow:next-task` commits after review; to commit by hand instead, add the line `- Auto-commit: off` here.

@@ -52,6 +52,9 @@ Recommended sections: a one-paragraph project summary, `## Before any task`, `##
 `## Finishing a task` (including the commit message format; default is
 `<area>: <what changed> (PLAN <id>)`).
 
+Optional: a line `- Auto-commit: off` (exact text, at the start of a line, indentation allowed, usually in
+`## Finishing a task`) stops `next-task` from committing; it suggests the message instead.
+
 Keep AGENTS.md under ~150 lines. Detail belongs in path rules, the SPEC, the CODEMAP, or ADRs.
 
 ## SPEC.md
@@ -77,7 +80,8 @@ the reusable test fixtures are.
 ## Conventions the skills assume
 
 - One task per session, one task per commit.
-- `next-task` stops after proposing a plan and waits for approval.
+- `next-task` stops after proposing a plan and waits for approval. Approval also covers committing
+  the finished task, unless the user says otherwise or AGENTS.md has `- Auto-commit: off`.
 - Context is a budget: every file read stays in the session for every later turn. Skills read docs
   by section, code by signature or line range, and command output trimmed to what matters.
 - Out-of-scope ideas are parked, not built.

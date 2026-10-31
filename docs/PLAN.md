@@ -89,10 +89,10 @@ reviewer, and Waypoint no longer has its own copies.
 
 ### From real use
 
-- [ ] **3.4** Approving a `next-task` plan also authorizes the commit: step 7 commits with the
-  suggested message after wrap-up instead of stopping with uncommitted work, unless the user said
-  not to or the project's AGENTS.md opts out (e.g. a `## Working agreements`-style "don't
-  auto-commit" line; define where in CONTRACT.md and the AGENTS template). Main friction across 4
+- [x] **3.4** Approving a `next-task` plan also authorizes the commit: step 7 commits the task's
+  files with the suggested message after wrap-up instead of stopping with uncommitted work, unless
+  the user said not to, AGENTS.md has a `- Auto-commit: off` line (defined in CONTRACT.md, mentioned
+  in the AGENTS template), or a file the task touched was already dirty. Main friction across 4
   projects. Bump the plugin version.
 
 ### Ponytail integration

@@ -75,6 +75,10 @@ It has two layers:
 `next-task` may run an optional review skill (currently `ponytail:ponytail-review`) in parallel with
 the reviewer when it is installed; devflow never requires one.
 
+Approving a `next-task` plan also authorizes committing the finished task: step 7 commits only the
+task's files and never pushes. A project opts out with `- Auto-commit: off` in AGENTS.md. (Learned
+across 4 projects: stopping with uncommitted work was the main friction.)
+
 ### 6.2 Layer 2 (to build)
 
 | Skill | Input | Output | Notes |

@@ -27,6 +27,7 @@ few, well-batched steps. This matters as much as getting it right the first time
 - Check that earlier tasks it depends on are done. If one isn't, say which, and stop.
 - If the current stage has no unchecked tasks, check its exit criteria. If they're met, say so and
   suggest updating the "Current stage" line; don't start the next stage yourself.
+- Run `git status --short` and note any files that are already uncommitted (step 7 needs this).
 
 ## 2. Understand it
 
@@ -49,11 +50,13 @@ few, well-batched steps. This matters as much as getting it right the first time
 ## 3. Plan, then stop
 
 - Propose an implementation plan: files to create or change, key types and functions, and the tests you'll write.
+  End it with the commit it will make: `When done: commits "<message>" (say "no commit" to skip).`
+  If AGENTS.md opts out (see step 7), say it will suggest the message instead.
 - If the task is large (e.g. many endpoints or screens, or more than ~8 files), propose splitting it
   into smaller PLAN tasks (e.g. `1.5.13` and `1.5.13b`) and doing only the first now. Long sessions
   cost far more per step than short ones.
 - **Stop and wait for the user's approval.** Do not write code yet. If the user changes the plan,
-  update it and continue.
+  update it and continue. Approving the plan also approves committing the finished task (step 7).
 
 ## 4. Build
 
@@ -106,6 +109,15 @@ few, well-batched steps. This matters as much as getting it right the first time
 - Update the SPEC or add an ADR in `docs/adr/` if a design decision changed.
 - If `docs/CODEMAP.md` exists and you added or moved a package, public entry point, or test fixture,
   update it. Keep it a map: one line per thing.
-- Give the user a short summary: what was built, anything skipped or parked, and a suggested commit
-  message in the format AGENTS.md specifies (default `<area>: <what changed> (PLAN <id>)`).
-- Don't commit unless the user asks. Don't start the next task.
+- Commit the task with a message in the format AGENTS.md specifies (default
+  `<area>: <what changed> (PLAN <id>)`). Stage only the files this task changed (`git add <paths>`,
+  never `-A`). Never push. If the commit fails (e.g. a hook), fix the cause and retry; never skip
+  hooks.
+- Don't commit, and instead give the suggested message and say why, if any of these hold:
+  - the user said not to commit;
+  - AGENTS.md has a line `- Auto-commit: off` (`grep -nE '^\s*- Auto-commit: off' AGENTS.md`);
+  - a file the task changed already had uncommitted edits at step 1;
+  - a Blocking finding or a test/lint failure is still open;
+  - the project isn't a git repository.
+- Give the user a short summary: what was built, anything skipped or parked, and the commit (hash
+  and message) or the suggested message. Don't start the next task.
