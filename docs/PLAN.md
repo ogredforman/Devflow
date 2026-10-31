@@ -120,7 +120,7 @@ otherwise, and 3.5 is README only. Nothing in the plugin may assume ponytail is 
   Nice to have → Nitpick; merge duplicates with the reviewer's findings. Not installed: skip
   silently. The re-review after significant fixes reruns both. Record the decision in SPEC §6.1
   (devflow may use an optional review skill, never require one). Bump the plugin version.
-- [ ] **3.5** README section "Using devflow with ponytail" (README only, not plugin files): install
+- [x] **3.5** README section "Using devflow with ponytail" (README only, not plugin files): install
   commands; `PONYTAIL_SUBAGENT_MATCHER` to keep ponytail's ruleset out of `devflow:reviewer`;
   levels (`ultra` while discussing an idea before kickoff, `full` inside kickoff steps and
   `next-task`); the project's AGENTS.md test rules win over ponytail's "one small test" minimum;

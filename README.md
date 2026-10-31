@@ -65,6 +65,37 @@ claude plugin install devflow@devflow
 Restart your Claude Code session, then run `/devflow:kickoff` in an empty folder to start a
 project, or `/devflow:check-contract` in an existing one.
 
+## Using devflow with ponytail
+
+[ponytail](https://github.com/DietrichGebert/ponytail) keeps each change as small as it can be.
+Devflow owns the process, ponytail owns how big the solution is. Ponytail is optional: without it,
+`next-task` just skips the second review. Its hooks need `node` on your PATH. Install it with
+these two commands, sent as two separate prompts:
+
+```sh
+/plugin marketplace add DietrichGebert/ponytail
+```
+
+```sh
+/plugin install ponytail@ponytail
+```
+
+- **Keep ponytail out of the reviewer.** Ponytail adds its rules to every subagent. Set
+  `PONYTAIL_SUBAGENT_MATCHER` to a regex naming the agents that *should* get them, for example
+  everything except devflow's agents. Add the key to the existing `env` block in
+  `~/.claude/settings.json`:
+
+  ```json
+  { "env": { "PONYTAIL_SUBAGENT_MATCHER": "^(?!devflow:)" } }
+  ```
+
+- **Levels.** Use `/ponytail ultra` while you're still discussing an idea before kickoff, and
+  `/ponytail full` (the default) during kickoff and `next-task`.
+- **Tests.** The project's AGENTS.md test rules win over ponytail's "one small test" minimum.
+  `next-task` tells ponytail's reviewer this.
+- **Exit criteria.** When checking a stage's exit criteria, run `/ponytail-debt` to list the
+  `shortcut:` comments, and check that each has a `## Parked` entry.
+
 ## Working on the plugin
 
 Clone the repo and add the local folder as the marketplace instead:
