@@ -47,6 +47,8 @@ These are created in Stage 0 task 0.1. Until then, they don't exist.
 ## Style
 
 - <Language/idiom preferences that apply everywhere. Area-specific rules go in `.claude/rules/`.>
+- A deliberate shortcut with a known limit gets a `shortcut: <limit>, <when to upgrade>` comment
+  and a matching entry in PLAN.md's `## Parked` section.
 
 ## Finishing a task
 

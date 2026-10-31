@@ -61,7 +61,8 @@ your context for the rest of the review. Read what the review needs, not whole p
    - `Lean (merge)`: near-copies that must change together; name both places.
 8. **Docs:** if a design decision changed, the SPEC or an ADR was updated in the same change; the
    task is ticked in PLAN.md (or about to be); if a package, public entry point, or test fixture was
-   added or moved and `docs/CODEMAP.md` exists, it reflects that.
+   added or moved and `docs/CODEMAP.md` exists, it reflects that; every `shortcut:` comment the
+   diff adds has a matching entry in PLAN.md's `## Parked` section (Should fix if not).
 
 Don't comment on formatting (hooks and formatters handle it) or on style preferences the project's
 docs don't state.

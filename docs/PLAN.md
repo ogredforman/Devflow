@@ -99,7 +99,7 @@ otherwise, and 3.4 is README only. Nothing in the plugin may assume ponytail is 
   platform instead of new code or a new dependency, yagni (an abstraction with one implementation,
   config nobody sets), merge (near-copies that must change together). Each finding needs a concrete
   case; Lean findings are never Blocking. Bump the plugin version.
-- [ ] **3.2** Deferred-shortcut convention: `templates/AGENTS.md` `## Style` gets "a deliberate
+- [x] **3.2** Deferred-shortcut convention: `templates/AGENTS.md` `## Style` gets "a deliberate
   shortcut with a known limit gets a `shortcut: <limit>, <when to upgrade>` comment and a matching
   `## Parked` entry". `next-task` step 7 checks that every `shortcut:` comment the diff adds has a
   Parked entry; the reviewer flags one without it as Should fix. Keep the rule generic (no plugin

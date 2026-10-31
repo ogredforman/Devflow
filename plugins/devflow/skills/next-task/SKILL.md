@@ -66,6 +66,8 @@ few, well-batched steps. This matters as much as getting it right the first time
   (e.g. `... 2>&1 | tail -30`). Keep all command output short (`tail`, `grep`, `head`).
 - Stay in scope. If something worth doing isn't part of this task, append it to PLAN.md's
   `## Parked` section (same format as `/devflow:park`) and move on.
+- A deliberate shortcut with a known limit gets a `shortcut: <limit>, <when to upgrade>` comment
+  and a Parked entry for the upgrade, written when you take the shortcut.
 
 ## 5. Verify
 
@@ -91,6 +93,9 @@ few, well-batched steps. This matters as much as getting it right the first time
 ## 7. Wrap up
 
 - Tick the task `[x]` in PLAN.md.
+- Check that every `shortcut:` comment the diff adds (`git diff | grep '^+.*shortcut:'`, plus
+  `grep -n 'shortcut:'` in untracked new files) has a matching entry in PLAN.md's `## Parked`
+  section; add any that are missing.
 - Update the SPEC or add an ADR in `docs/adr/` if a design decision changed.
 - If `docs/CODEMAP.md` exists and you added or moved a package, public entry point, or test fixture,
   update it. Keep it a map: one line per thing.
