@@ -87,6 +87,38 @@ reviewer, and Waypoint no longer has its own copies.
 - Plugin evals with `claude plugin eval` for `next-task` and the reviewer.
 - Pushing this repo to GitHub and installing from there, for use on other machines.
 
+### Ponytail integration
+
+[ponytail](https://github.com/DietrichGebert/ponytail) is an always-on "smallest complete change"
+plugin. Devflow owns the process; ponytail owns solution size. Ponytail stays optional: 3.1 and 3.2
+stand on their own, 3.3 runs only when ponytail's review skill is present and skips silently
+otherwise, and 3.4 is README only. Nothing in the plugin may assume ponytail is installed.
+
+- [ ] **3.1** Reviewer: add a **Lean** check after Tests (SPEC §6.1): delete (dead code, unused
+  options, speculative features), reuse (a helper the repo already has; name the path), stdlib or
+  platform instead of new code or a new dependency, yagni (an abstraction with one implementation,
+  config nobody sets), merge (near-copies that must change together). Each finding needs a concrete
+  case; Lean findings are never Blocking. Bump the plugin version.
+- [ ] **3.2** Deferred-shortcut convention: `templates/AGENTS.md` `## Style` gets "a deliberate
+  shortcut with a known limit gets a `shortcut: <limit>, <when to upgrade>` comment and a matching
+  `## Parked` entry". `next-task` step 7 checks that every `shortcut:` comment the diff adds has a
+  Parked entry; the reviewer flags one without it as Should fix. Keep the rule generic (no plugin
+  named). Bump the plugin version.
+- [ ] **3.3** `next-task` step 6 runs a second, optional review automatically: if the
+  `ponytail:ponytail-review` skill is available, spawn a general-purpose subagent in parallel with
+  `devflow:reviewer` that runs it on the uncommitted changes (so its report stays out of the main
+  context). Pass the same brief, plus "the project's AGENTS.md test rules override your
+  missing-test checks". Map its groups onto ours: Must fix → Blocking, Should fix → Should fix,
+  Nice to have → Nitpick; merge duplicates with the reviewer's findings. Not installed: skip
+  silently. The re-review after significant fixes reruns both. Record the decision in SPEC §6.1
+  (devflow may use an optional review skill, never require one). Bump the plugin version.
+- [ ] **3.4** README section "Using devflow with ponytail" (README only, not plugin files): install
+  commands; `PONYTAIL_SUBAGENT_MATCHER` to keep ponytail's ruleset out of `devflow:reviewer`;
+  levels (`ultra` while discussing an idea before kickoff, `full` inside kickoff steps and
+  `next-task`); the project's AGENTS.md test rules win over ponytail's "one small test" minimum;
+  `/ponytail-debt` when checking a stage's exit criteria. Then run one real `next-task` in a
+  scratch project with ponytail installed, confirm both reviews run, and fix what conflicts.
+
 **Exit criteria:** defined at the start of the stage.
 
 ---
