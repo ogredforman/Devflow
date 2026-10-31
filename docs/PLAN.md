@@ -3,7 +3,7 @@
 > Companion to [`SPEC.md`](./SPEC.md). Build Layer 2 one task at a time with `/devflow:next-task`,
 > the same way any other devflow project is built.
 
-**Current stage: Stage 2 — Kickoff pipeline**
+**Current stage: Stage 3 — Refinement (driven by use)**
 
 Task IDs are `<stage>.<task>`. Tick tasks `[x]` as they're finished. `/devflow:next-task` picks the
 first unchecked task in the current stage; `/devflow:park` adds ideas to the Parked section.
