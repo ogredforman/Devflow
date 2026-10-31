@@ -104,7 +104,7 @@ otherwise, and 3.4 is README only. Nothing in the plugin may assume ponytail is 
   `## Parked` entry". `next-task` step 7 checks that every `shortcut:` comment the diff adds has a
   Parked entry; the reviewer flags one without it as Should fix. Keep the rule generic (no plugin
   named). Bump the plugin version.
-- [ ] **3.3** `next-task` step 6 runs a second, optional review automatically: if the
+- [x] **3.3** `next-task` step 6 runs a second, optional review automatically: if the
   `ponytail:ponytail-review` skill is available, spawn a general-purpose subagent in parallel with
   `devflow:reviewer` that runs it on the uncommitted changes (so its report stays out of the main
   context). Pass the same brief, plus "the project's AGENTS.md test rules override your
@@ -139,3 +139,4 @@ Ideas and tangents captured mid-work (via `/devflow:park`). Not scheduled. Revie
 - [ ] Dry run 2.7: PLAN template's Stage 3 "Candidates:" has an empty `-` bullet with no guidance on what kickoff-plan writes there (used "None yet; filled from real use and the Parked section.") (parked 2026-10-03; suggested stage: 3)
 - [ ] Dry run 2.7: Go preset `gitignore` ignores `config.toml` and SQLite files even when the SPEC has neither; kickoff-agents only says to trim the frontend section (parked 2026-10-03; suggested stage: 3)
 - [ ] Dry run 2.7: the dry run followed the SKILL.md files by hand, so slash-command mechanics (`$ARGUMENTS` passing through `/devflow:kickoff`, `${CLAUDE_PLUGIN_ROOT}` resolution, stop points) are still untested; cover them in 2.8 (parked 2026-10-03; suggested stage: 2)
+- [ ] Approving a `next-task` plan should also authorize committing: after step 7, commit with the suggested message unless the user said not to (or a project opts out in AGENTS.md), instead of stopping with uncommitted work. Main friction across 4 projects (parked 2026-10-31; suggested stage: 3)

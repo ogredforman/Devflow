@@ -72,6 +72,9 @@ It has two layers:
 | Templates | `plugins/devflow/templates/` | BRIEF, SPEC, PLAN, AGENTS, CLAUDE, CODEMAP, ADR |
 | Go preset | `plugins/devflow/presets/go/` | Hooks program, settings, Go rules, gitignore |
 
+`next-task` may run an optional review skill (currently `ponytail:ponytail-review`) in parallel with
+the reviewer when it is installed; devflow never requires one.
+
 ### 6.2 Layer 2 (to build)
 
 | Skill | Input | Output | Notes |

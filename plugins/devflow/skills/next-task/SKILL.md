@@ -86,9 +86,16 @@ few, well-batched steps. This matters as much as getting it right the first time
   Tests / lint: passed   (or: the failures, trimmed)
   Notes: <anything non-obvious: deliberate trade-offs, things parked>
   ```
+- If the `ponytail:ponytail-review` skill is available, also spawn a general-purpose subagent in
+  the same message as the reviewer call (so they run in parallel), so its report stays out of this context. Prompt: "Run the
+  `ponytail:ponytail-review` skill on the uncommitted changes", the same brief, and "The project's
+  AGENTS.md test rules override your missing-test checks." Map its groups onto the reviewer's:
+  Must fix → Blocking, Should fix → Should fix, Nice to have → Nitpick; merge findings both raise.
+  If the skill isn't available, skip this silently.
 - Fix every Blocking finding. Fix Should-fix findings unless there's a good reason not to; if you
   skip one, say why.
-- If you made significant fixes, run the reviewer once more, naming only the files you changed since.
+- If you made significant fixes, run the review(s) once more, naming only the files you changed since
+  (for ponytail, put those files in place of "the uncommitted changes").
 
 ## 7. Wrap up
 
