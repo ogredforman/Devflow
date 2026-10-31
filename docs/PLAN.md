@@ -87,12 +87,20 @@ reviewer, and Waypoint no longer has its own copies.
 - Plugin evals with `claude plugin eval` for `next-task` and the reviewer.
 - Pushing this repo to GitHub and installing from there, for use on other machines.
 
+### From real use
+
+- [ ] **3.4** Approving a `next-task` plan also authorizes the commit: step 7 commits with the
+  suggested message after wrap-up instead of stopping with uncommitted work, unless the user said
+  not to or the project's AGENTS.md opts out (e.g. a `## Working agreements`-style "don't
+  auto-commit" line; define where in CONTRACT.md and the AGENTS template). Main friction across 4
+  projects. Bump the plugin version.
+
 ### Ponytail integration
 
 [ponytail](https://github.com/DietrichGebert/ponytail) is an always-on "smallest complete change"
 plugin. Devflow owns the process; ponytail owns solution size. Ponytail stays optional: 3.1 and 3.2
 stand on their own, 3.3 runs only when ponytail's review skill is present and skips silently
-otherwise, and 3.4 is README only. Nothing in the plugin may assume ponytail is installed.
+otherwise, and 3.5 is README only. Nothing in the plugin may assume ponytail is installed.
 
 - [x] **3.1** Reviewer: add a **Lean** check after Tests (SPEC §6.1): delete (dead code, unused
   options, speculative features), reuse (a helper the repo already has; name the path), stdlib or
@@ -112,7 +120,7 @@ otherwise, and 3.4 is README only. Nothing in the plugin may assume ponytail is 
   Nice to have → Nitpick; merge duplicates with the reviewer's findings. Not installed: skip
   silently. The re-review after significant fixes reruns both. Record the decision in SPEC §6.1
   (devflow may use an optional review skill, never require one). Bump the plugin version.
-- [ ] **3.4** README section "Using devflow with ponytail" (README only, not plugin files): install
+- [ ] **3.5** README section "Using devflow with ponytail" (README only, not plugin files): install
   commands; `PONYTAIL_SUBAGENT_MATCHER` to keep ponytail's ruleset out of `devflow:reviewer`;
   levels (`ultra` while discussing an idea before kickoff, `full` inside kickoff steps and
   `next-task`); the project's AGENTS.md test rules win over ponytail's "one small test" minimum;
@@ -139,4 +147,3 @@ Ideas and tangents captured mid-work (via `/devflow:park`). Not scheduled. Revie
 - [ ] Dry run 2.7: PLAN template's Stage 3 "Candidates:" has an empty `-` bullet with no guidance on what kickoff-plan writes there (used "None yet; filled from real use and the Parked section.") (parked 2026-10-03; suggested stage: 3)
 - [ ] Dry run 2.7: Go preset `gitignore` ignores `config.toml` and SQLite files even when the SPEC has neither; kickoff-agents only says to trim the frontend section (parked 2026-10-03; suggested stage: 3)
 - [ ] Dry run 2.7: the dry run followed the SKILL.md files by hand, so slash-command mechanics (`$ARGUMENTS` passing through `/devflow:kickoff`, `${CLAUDE_PLUGIN_ROOT}` resolution, stop points) are still untested; cover them in 2.8 (parked 2026-10-03; suggested stage: 2)
-- [ ] Approving a `next-task` plan should also authorize committing: after step 7, commit with the suggested message unless the user said not to (or a project opts out in AGENTS.md), instead of stopping with uncommitted work. Main friction across 4 projects (parked 2026-10-31; suggested stage: 3)
