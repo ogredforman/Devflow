@@ -68,7 +68,7 @@ It has two layers:
 | `next-task` skill | `plugins/devflow/skills/next-task/` | One PLAN task through plan → build → verify → review |
 | `park` skill | `plugins/devflow/skills/park/` | Append an idea to PLAN's Parked section |
 | `progress` skill | `plugins/devflow/skills/progress/` | Where-you-left-off summary |
-| `reviewer` agent | `plugins/devflow/agents/reviewer.md` | Read-only review against the project's own docs |
+| `reviewer` agent | `plugins/devflow/agents/reviewer.md` | Read-only review against the project's own docs, plus a built-in Lean check |
 | Templates | `plugins/devflow/templates/` | BRIEF, SPEC, PLAN, AGENTS, CLAUDE, CODEMAP, ADR |
 | Go preset | `plugins/devflow/presets/go/` | Hooks program, settings, Go rules, gitignore |
 

@@ -94,7 +94,7 @@ plugin. Devflow owns the process; ponytail owns solution size. Ponytail stays op
 stand on their own, 3.3 runs only when ponytail's review skill is present and skips silently
 otherwise, and 3.4 is README only. Nothing in the plugin may assume ponytail is installed.
 
-- [ ] **3.1** Reviewer: add a **Lean** check after Tests (SPEC §6.1): delete (dead code, unused
+- [x] **3.1** Reviewer: add a **Lean** check after Tests (SPEC §6.1): delete (dead code, unused
   options, speculative features), reuse (a helper the repo already has; name the path), stdlib or
   platform instead of new code or a new dependency, yagni (an abstraction with one implementation,
   config nobody sets), merge (near-copies that must change together). Each finding needs a concrete
