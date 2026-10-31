@@ -68,7 +68,7 @@ reviewer, and Waypoint no longer has its own copies.
   missing step only, then stop and name the following command. Safe to run repeatedly.
 - [x] **2.7** Dry run: in a scratch folder, run the full pipeline on a small toy idea. Log every
   friction point with `/devflow:park`; fix the ones that produced wrong or missing output.
-- [ ] **2.8** Real run: bootstrap the second real project with the pipeline and complete its
+- [x] **2.8** Real run: bootstrap the second real project with the pipeline and complete its
   task 0.1 with `/devflow:next-task`. Fix what breaks.
 
 **Exit criteria:**
