@@ -28,6 +28,9 @@ few, well-batched steps. This matters as much as getting it right the first time
 - If the current stage has no unchecked tasks, check its exit criteria. If they're met, say so and
   suggest updating the "Current stage" line; don't start the next stage yourself.
 - Run `git status --short` and note any files that are already uncommitted (step 7 needs this).
+- Name the thread after the task, e.g. `1.5 Add export endpoint` (id plus 3–6 words). In Claude Code
+  the plugin's hook already set the session title. If the host gives you a tool that renames the
+  current thread (it may need loading first), call it. Otherwise skip this.
 
 ## 2. Understand it
 

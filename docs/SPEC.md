@@ -112,7 +112,8 @@ across 4 projects: stopping with uncommitted work was the main friction.)
 
 ## 9. Non-functional
 
-- Works on Windows, macOS, and Linux (skills are Markdown; preset hooks are Go).
+- Works on Windows, macOS, and Linux (skills are Markdown; preset hooks are Go; the plugin's one
+  hook, `hooks/next-task-title.sh`, is bash, which Claude Code on Windows already requires via Git Bash).
 - `claude plugin validate ./plugins/devflow` and `claude plugin validate .` pass after every change.
 - Skill descriptions stay short, since they load into every session's context.
 

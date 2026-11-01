@@ -50,6 +50,7 @@ plugins/devflow/
   CONTRACT.md                     the doc shapes the skills rely on
   skills/                         kickoff (+ its four steps), next-task, park, progress, check-contract
   agents/reviewer.md
+  hooks/                          titles the session after the task /devflow:next-task picks
   templates/                      BRIEF, SPEC, PLAN, AGENTS, CLAUDE, CODEMAP, ADR skeletons
   presets/go/                     Go hooks program (+tests), settings, rules, gitignore
 docs/SPEC.md, docs/PLAN.md        Devflow's own spec and plan; it's built with itself

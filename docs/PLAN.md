@@ -94,6 +94,10 @@ reviewer, and Waypoint no longer has its own copies.
   the user said not to, AGENTS.md has a `- Auto-commit: off` line (defined in CONTRACT.md, mentioned
   in the AGENTS template), or a file the task touched was already dirty. Main friction across 4
   projects. Bump the plugin version.
+- [x] **3.6** `next-task` names the thread after the task (`<id> <short name>`) instead of leaving
+  it as the slash command: a plugin `UserPromptSubmit` hook (`hooks/next-task-title.sh`) sets the
+  Claude Code session title, and step 1 also calls the host's rename-thread tool when one exists.
+  Bump the plugin version.
 
 ### Ponytail integration
 
