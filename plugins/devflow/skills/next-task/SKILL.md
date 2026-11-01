@@ -29,8 +29,10 @@ few, well-batched steps. This matters as much as getting it right the first time
   suggest updating the "Current stage" line; don't start the next stage yourself.
 - Run `git status --short` and note any files that are already uncommitted (step 7 needs this).
 - Name the thread after the task, e.g. `1.5 Add export endpoint` (id plus 3–6 words). In Claude Code
-  the plugin's hook already set the session title. If the host gives you a tool that renames the
-  current thread (it may need loading first), call it. Otherwise skip this.
+  the plugin's hook sets the session title, but a host app (desktop GUI, orchestrator) keeps its own
+  thread title. So always look for a rename tool: check your tools, then any deferred-tool list
+  (load it with ToolSearch, e.g. query `thread rename`). One like `thread_update` with
+  `action: "rename"` and no thread id renames the current thread. Call it. If none exists, skip this.
 
 ## 2. Understand it
 
