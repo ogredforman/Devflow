@@ -72,8 +72,12 @@ It has two layers:
 | Templates | `plugins/devflow/templates/` | BRIEF, SPEC, PLAN, AGENTS, CLAUDE, CODEMAP, ADR |
 | Go preset | `plugins/devflow/presets/go/` | Hooks program, settings, Go rules, gitignore |
 
-`next-task` may run an optional review skill (currently `ponytail:ponytail-review`) in parallel with
-the reviewer when it is installed; devflow never requires one.
+`next-task` runs one review per task (`devflow:reviewer`, foreground). Blocking findings are fixed in
+the task; Should fix and Nitpick findings become one batched `<id>c` follow-up task in PLAN.md, done
+in a fresh session. An optional stage-end sweep runs one audit over the whole stage's diff (an
+optional skill such as `ponytail:ponytail-audit` when installed; devflow never requires one).
+(Learned on a real project: two reviewers per task plus re-review rounds pushed sessions to
+100–300 model calls and 150–210k context, all paid in the main session.)
 
 Approving a `next-task` plan also authorizes committing the finished task: step 7 commits only the
 task's files and never pushes. A project opts out with `- Auto-commit: off` in AGENTS.md. (Learned

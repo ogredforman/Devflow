@@ -70,7 +70,7 @@ project, or `/devflow:check-contract` in an existing one.
 
 [ponytail](https://github.com/DietrichGebert/ponytail) keeps each change as small as it can be.
 Devflow owns the process, ponytail owns how big the solution is. Ponytail is optional: without it,
-`next-task` just skips the second review. Its hooks need `node` on your PATH. Install it with
+the stage-end sweep uses devflow's reviewer instead of `ponytail-audit`. Its hooks need `node` on your PATH. Install it with
 these two commands, sent as two separate prompts:
 
 ```sh
@@ -92,8 +92,12 @@ these two commands, sent as two separate prompts:
 
 - **Levels.** Use `/ponytail ultra` while you're still discussing an idea before kickoff, and
   `/ponytail full` (the default) during kickoff and `next-task`.
+- **Review once per stage, not per task.** Each task gets one `devflow:reviewer` pass, whose Lean,
+  security and load checks cover what ponytail's per-task review used to add. When a stage's tasks
+  are all done, `next-task` offers a stage-end sweep: one `/ponytail-audit` over the stage's whole
+  diff, with its findings turned into tasks for the next stage (or Parked).
 - **Tests.** The project's AGENTS.md test rules win over ponytail's "one small test" minimum.
-  `next-task` tells ponytail's reviewer this.
+  `next-task` tells the audit this.
 - **Exit criteria.** When checking a stage's exit criteria, run `/ponytail-debt` to list the
   `shortcut:` comments, and check that each has a `## Parked` entry.
 

@@ -26,7 +26,16 @@ few, well-batched steps. This matters as much as getting it right the first time
   Find it with `grep -n` rather than reading the whole file; read only the current stage's section.
 - Check that earlier tasks it depends on are done. If one isn't, say which, and stop.
 - If the current stage has no unchecked tasks, check its exit criteria. If they're met, say so and
-  suggest updating the "Current stage" line; don't start the next stage yourself.
+  suggest updating the "Current stage" line; don't start the next stage yourself. Also offer the
+  optional stage-end sweep, and run it only if the user says yes:
+  - Find where the stage started: the commit that set the current stage line
+    (`git log -S'<the exact Current stage line>' --format=%h -1 -- <PLAN path>`). If none is found, ask.
+  - Spawn one subagent in the foreground over `git diff <start>..HEAD`. If the
+    `ponytail:ponytail-audit` skill is available, a general-purpose subagent runs it on that diff,
+    and is told that the project's AGENTS.md test rules override its missing-test checks.
+    Otherwise use `devflow:reviewer`, naming the stage instead of a task.
+  - Turn the findings into batched tasks (a few, grouped by area) at the top of the next stage, or
+    into `## Parked` if there's no next stage yet. Fix nothing in this session.
 - Run `git status --short` and note any files that are already uncommitted (step 7 needs this).
 - Name the thread after the task, e.g. `1.5 Add export endpoint` (id plus 3–6 words). In Claude Code
   the plugin's hook sets the session title, but a host app (desktop GUI, orchestrator) keeps its own
@@ -86,24 +95,28 @@ few, well-batched steps. This matters as much as getting it right the first time
 
 ## 6. Review
 
-- Invoke the `devflow:reviewer` subagent with a brief, so it doesn't redo your orientation:
+One review per task. Findings land in an already large context, so every extra round is costly.
+
+- Invoke the `devflow:reviewer` subagent once, in the foreground (`run_in_background: false`;
+  step 7 depends on it), with a brief, so it doesn't redo your orientation:
   ```
   Review PLAN <id>: <task title>
   SPEC sections: <e.g. §7.1, §10.5>
   Changed files: <list, noting which are new>
-  Tests / lint: passed   (or: the failures, trimmed)
+  Tests / lint: passed, already run in full; don't rerun them   (or: the failures, trimmed)
   Notes: <anything non-obvious: deliberate trade-offs, things parked>
   ```
-- If the `ponytail:ponytail-review` skill is available, also spawn a general-purpose subagent in
-  the same message as the reviewer call (so they run in parallel), so its report stays out of this context. Prompt: "Run the
-  `ponytail:ponytail-review` skill on the uncommitted changes", the same brief, and "The project's
-  AGENTS.md test rules override your missing-test checks." Map its groups onto the reviewer's:
-  Must fix → Blocking, Should fix → Should fix, Nice to have → Nitpick; merge findings both raise.
-  If the skill isn't available, skip this silently.
-- Fix every Blocking finding. Fix Should-fix findings unless there's a good reason not to; if you
-  skip one, say why.
-- If you made significant fixes, run the review(s) once more, naming only the files you changed since
-  (for ponytail, put those files in place of "the uncommitted changes").
+  Don't run tests or builds while it runs, and don't schedule wake-ups to wait for it.
+- Fix every Blocking finding in this task. Re-review only if a Blocking fix rewrote substantial
+  logic, and then only on the files that fix changed. Never re-review for Should-fix or Nitpick items.
+- Don't fix Should-fix or Nitpick findings here. Batch them all into one follow-up task, placed in
+  PLAN.md right after the current task, with the current id plus the next unused letter (e.g. `3.9c`
+  if `3.9b` exists), one line per finding:
+  ```
+  - [ ] **<id><letter>** Review follow-ups for <id>: `path/file.ext:123` <finding>; `other.ext:45` <finding>
+  ```
+  One task, not one per finding: a fresh session costs about 40k tokens just to orient. If there
+  are no such findings, add nothing. The user can promote, reorder, or delete the task.
 
 ## 7. Wrap up
 

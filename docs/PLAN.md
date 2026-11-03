@@ -103,8 +103,8 @@ reviewer, and Waypoint no longer has its own copies.
 
 [ponytail](https://github.com/DietrichGebert/ponytail) is an always-on "smallest complete change"
 plugin. Devflow owns the process; ponytail owns solution size. Ponytail stays optional: 3.1 and 3.2
-stand on their own, 3.3 runs only when ponytail's review skill is present and skips silently
-otherwise, and 3.5 is README only. Nothing in the plugin may assume ponytail is installed.
+stand on their own, 3.3 (superseded by 3.7) ran only when ponytail's review skill was present,
+and 3.5 is README only. Nothing in the plugin may assume ponytail is installed.
 
 - [x] **3.1** Reviewer: add a **Lean** check after Tests (SPEC §6.1): delete (dead code, unused
   options, speculative features), reuse (a helper the repo already has; name the path), stdlib or
@@ -116,7 +116,7 @@ otherwise, and 3.5 is README only. Nothing in the plugin may assume ponytail is 
   `## Parked` entry". `next-task` step 7 checks that every `shortcut:` comment the diff adds has a
   Parked entry; the reviewer flags one without it as Should fix. Keep the rule generic (no plugin
   named). Bump the plugin version.
-- [x] **3.3** `next-task` step 6 runs a second, optional review automatically: if the
+- [x] **3.3** (superseded by 3.7) `next-task` step 6 runs a second, optional review automatically: if the
   `ponytail:ponytail-review` skill is available, spawn a general-purpose subagent in parallel with
   `devflow:reviewer` that runs it on the uncommitted changes (so its report stays out of the main
   context). Pass the same brief, plus "the project's AGENTS.md test rules override your
@@ -130,6 +130,12 @@ otherwise, and 3.5 is README only. Nothing in the plugin may assume ponytail is 
   `next-task`); the project's AGENTS.md test rules win over ponytail's "one small test" minimum;
   `/ponytail-debt` when checking a stage's exit criteria. Then run one real `next-task` in a
   scratch project with ponytail installed, confirm both reviews run, and fix what conflicts.
+- [x] **3.7** Cut review bloat (supersedes 3.3's per-task ponytail review): `next-task` step 6 runs
+  one foreground `devflow:reviewer` that doesn't rerun tests; re-review only after a Blocking fix
+  that rewrote substantial logic, on those files only; Should fix and Nitpick findings become one
+  `<id>c` follow-up task. Reviewer gains security and load checks. Step 1 offers an optional
+  stage-end sweep (`ponytail:ponytail-audit` if available, else the reviewer) over the stage diff,
+  findings → next-stage tasks or Parked. README and SPEC §6.1 updated. Bump the plugin version.
 
 **Exit criteria:** defined at the start of the stage.
 

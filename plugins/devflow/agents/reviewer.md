@@ -36,7 +36,8 @@ your context for the rest of the review. Read what the review needs, not whole p
    not whole unrelated files.
 7. For each file in `.claude/rules/`, check its `paths:` frontmatter. Read the rules whose patterns
    match any changed file (and every rules file with no `paths:`).
-8. Tests and lint: if your prompt reports that they passed, trust it and don't rerun them.
+8. Tests and lint: if your prompt reports that they passed, trust it and don't rerun them or
+   build the project; the main session already did, and a second run competes with it for CPU.
    Otherwise run the test and lint commands from `## Commands` with output trimmed to failures,
    and record failures verbatim.
 
@@ -49,7 +50,10 @@ your context for the rest of the review. Read what the review needs, not whole p
 4. **Path rules.** Check changed files against the matching `.claude/rules/` files.
 5. **Correctness and failure paths:** errors handled and not swallowed, transactions or cleanup on
    failure, resources and background work stoppable, behavior when external dependencies fail or
-   return bad data.
+   return bad data. Read the callers of changed functions, not only the diff.
+   **Security:** input validated at trust boundaries; no secrets, injection, or data exposure.
+   **Load:** what breaks at realistic size (unbounded loops or reads, queries in a loop, missing
+   limits or timeouts). Flag only with a concrete case.
 6. **Tests:** they exist for the new behavior, test behavior rather than restating implementation,
    and pass. Note important untested paths.
 7. **Lean:** is any of the diff bigger than the task needs? Flag only code the diff adds, and only
